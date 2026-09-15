@@ -38,7 +38,7 @@ const Footer = () => {
         {/* Social / Contact Links */}
         <div className="flex justify-center items-center gap-6 pt-4 text-xs text-gray-200">
           <a 
-            href="https://wa.me/6282339415490" 
+            href="https://wa.me/6282339415490?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20undangan%20digital."
             target="_blank" 
             rel="noreferrer" 
             className="flex items-center gap-1.5 hover:text-white transition opacity-90 hover:opacity-100"
