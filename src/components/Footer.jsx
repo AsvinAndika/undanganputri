@@ -28,17 +28,17 @@ const Footer = () => {
             e-invitation
           </p>
           <h3 className="font-serif text-3xl font-light tracking-wide text-white">
-            A S V N
+            A V N
           </h3>
           <p className="text-[9px] tracking-[0.2em] text-gray-200 font-bold uppercase pt-2">
-            CREATED BY ASVNNDKA
+            CREATED BY ASVNDKA
           </p>
         </div>
 
         {/* Social / Contact Links */}
         <div className="flex justify-center items-center gap-6 pt-4 text-xs text-gray-200">
           <a 
-            href="https://wa.me" 
+            href="https://wa.me/6282339415490" 
             target="_blank" 
             rel="noreferrer" 
             className="flex items-center gap-1.5 hover:text-white transition opacity-90 hover:opacity-100"
@@ -50,7 +50,7 @@ const Footer = () => {
           </a>
 
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/a.asvinandika?stkn=dDQ0eHdiY20zZ3Ni" 
             target="_blank" 
             rel="noreferrer" 
             className="flex items-center gap-1.5 hover:text-white transition opacity-90 hover:opacity-100"
