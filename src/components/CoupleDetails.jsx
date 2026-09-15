@@ -25,7 +25,7 @@ const CoupleDetails = () => {
               Lalu Iwan Zulkipli
             </h2>
             <p className="text-xs text-gray-300 font-serif italic font-light tracking-wide">
-              Putra dari Bapak Lalu zainudin muin & Alm. Ibu sabakyah
+              Putra dari Bapak Lalu zainudin muin<br />& Alm. Ibu sabakyah
             </p>
           </div>
 
@@ -56,7 +56,7 @@ const CoupleDetails = () => {
           </h3>
 
           {/* Photo Bride Card */}
-          <div className="w-full aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+          <div className="w-full aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
             <img 
               src="/assets/galeri/mempelai2.jpeg"  
               alt="The Bride" 
@@ -70,7 +70,7 @@ const CoupleDetails = () => {
               Nia Ramadani Putri
             </h2>
             <p className="text-xs text-gray-300 font-serif italic font-light tracking-wide">
-              Putri dari Bapak Ashadi cahyadi & Ibu Baiq zahrah
+              Putri dari Bapak Ashadi cahyadi<br />& Ibu Baiq zahrah
             </p>
           </div>
 

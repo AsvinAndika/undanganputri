@@ -52,8 +52,11 @@ const Doa = () => {
         </div>
 
         {/* Text Surah (Rata Kiri, Font Serif, Spasi Elegan) */}
-        <p className="text-left text-xs md:text-sm font-serif leading-relaxed text-gray-200 font-light tracking-wide">
-          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+        <p className="text-justify text-xs md:text-sm font-serif leading-[1.5] text-gray-200 font-light tracking-wide">
+          Maha Suci Allah yang telah menciptakan manusia berpasang-pasangan "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup agar kamu memperoleh ketenangan darinya, dan Dia menjadikan di antar kalian rasa kasih dan sayang."
+        </p>
+        <p className="text-justify text-xs md:text-sm font-serif leading-[1.5] text-gray-200 font-light tracking-wide">
+          Semoga Allah menjadikan pernikahan ini sebagai jalan menuju ketenangan (Sakinah), serta memenuhi hari-hari kami dengan mawaddah wa rahmah.
         </p>
 
         {/* 3 Photos Grid Slider (Auto Smooth Scroll Satu per Satu ke Kiri) */}

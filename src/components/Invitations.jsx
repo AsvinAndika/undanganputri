@@ -19,13 +19,8 @@ const globalBgImages = [
   "/assets/galeri/galeri10.jpeg",
 ];
 
-const MUSIC_URL = 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-romantic-acoustic-guitar-113578.mp3';
+const MUSIC_URL = '/assets/musik.mp3';
 
-/**
- * Optimasi 1: AnimatedSection Ringan
- * - Menghapus efek `blur-*` (Gaussian Blur) pada animasi scroll karena memicu GPU lag di HP.
- * - Menghapus `will-change-transform` berlebih untuk menghemat memori GPU RAM.
- */
 const AnimatedSection = memo(({ children, animation = 'fade-up', delay = 0, duration = 1000 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef(null);
