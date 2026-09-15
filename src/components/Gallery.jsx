@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const featuredPhoto = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80";
+const featuredPhoto = "/assets/galeri/galeri4.jpeg"; 
 
 const gridPhotos = [
-  "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=600&q=80",
+  "/assets/galeri/galeri2.jpeg",
+  "/assets/galeri/galeri7.jpeg",
+  "/assets/galeri/galeri9.jpeg",
+  "/assets/galeri/galeri5.jpeg",
+  "/assets/galeri/galeri6.jpeg",
+  "/assets/galeri/galeri8.jpeg",
+  "/assets/galeri/galeri3.jpeg",
+  "/assets/galeri/galeri10.jpeg",
 ];
 
 const allPhotos = [featuredPhoto, ...gridPhotos];
 
 const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const handleOpen = (index) => {
+    setSelectedIndex(index);
+  };
+
+  const handleClose = () => {
+    setSelectedIndex(null);
+  };
+
+  const handleNext = () => {
+    setSelectedIndex((prev) => (prev + 1) % allPhotos.length);
+  };
+
+  const handlePrev = () => {
+    setSelectedIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
+  };
 
   // Kunci scroll halaman utama ketika lightbox terbuka
   useEffect(() => {
@@ -43,22 +59,6 @@ const Gallery = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex]);
-
-  const handleOpen = (index) => {
-    setSelectedIndex(index);
-  };
-
-  const handleClose = () => {
-    setSelectedIndex(null);
-  };
-
-  const handleNext = () => {
-    setSelectedIndex((prev) => (prev + 1) % allPhotos.length);
-  };
-
-  const handlePrev = () => {
-    setSelectedIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
-  };
 
   return (
     <section className="text-white py-16 px-4 flex flex-col items-center">

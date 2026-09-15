@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Hero from './Hero';
 import Doa from './Doa';
 import CoupleDetails from './CoupleDetails';
@@ -9,10 +9,14 @@ import Gallery from './Gallery';
 import Footer from './Footer';
 
 const globalBgImages = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80',
-  'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80',
+  "/assets/galeri/galeri2.jpeg",
+  "/assets/galeri/galeri7.jpeg",
+  "/assets/galeri/galeri9.jpeg",
+  "/assets/galeri/galeri5.jpeg",
+  "/assets/galeri/galeri6.jpeg",
+  "/assets/galeri/galeri8.jpeg",
+  "/assets/galeri/galeri3.jpeg",
+  "/assets/galeri/galeri10.jpeg",
 ];
 
 const MUSIC_URL = 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-romantic-acoustic-guitar-113578.mp3';
@@ -81,7 +85,11 @@ const AnimatedSection = ({ children, animation = 'fade-up', delay = 0, duration 
 const Invitation = () => {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showMusicBtn, setShowMusicBtn] = useState(false); // State kontrol visibilitas tombol musik
+  const [showMusicBtn, setShowMusicBtn] = useState(() => {
+    const hasRolled = sessionStorage.getItem('isRolled') === 'true';
+    const scrolledFar = typeof window !== 'undefined' && window.scrollY > 50;
+    return hasRolled || scrolledFar;
+  });
   const audioRef = useRef(null);
 
   // Background Slideshow
@@ -95,7 +103,8 @@ const Invitation = () => {
 
   // Dipanggil ketika LET'S ROLL diklik
   const handleRollClick = () => {
-    setShowMusicBtn(true); // Tampilkan tombol musik setelah diklik
+    setShowMusicBtn(true);
+    sessionStorage.setItem('isRolled', 'true');
     if (audioRef.current) {
       audioRef.current
         .play()
@@ -135,7 +144,7 @@ const Invitation = () => {
         ))}
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/75 backdrop-brightness-90"></div>
+        <div className="absolute inset-0 bg-black/65 backdrop-brightness-90"></div>
       </div>
 
       {/* Konten Utama */}
@@ -173,7 +182,7 @@ const Invitation = () => {
         </AnimatedSection>
       </div>
 
-      {/* Floating Music Button (Baru muncul setelah Let's Roll diklik) */}
+      {/* Floating Music Button */}
       <div
         className={`fixed bottom-6 right-6 z-50 transition-all duration-700 ease-out ${
           showMusicBtn

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Footer = () => {
   return (
@@ -28,7 +27,7 @@ const Footer = () => {
             e-invitation
           </p>
           <h3 className="font-serif text-3xl font-light tracking-wide text-white">
-            A V N
+            V N S
           </h3>
           <p className="text-[9px] tracking-[0.2em] text-gray-200 font-bold uppercase pt-2">
             CREATED BY ASVNDKA

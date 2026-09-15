@@ -1,4 +1,3 @@
-import React from 'react';
 
 const CoupleDetails = () => {
   return (
@@ -14,7 +13,7 @@ const CoupleDetails = () => {
           {/* Photo Groom */}
           <div className="w-full aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
             <img 
-              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" 
+              src="/assets/galeri/mempelai1.jpeg" 
               alt="The Groom" 
               className="w-full h-full object-cover" 
             />
@@ -59,7 +58,7 @@ const CoupleDetails = () => {
           {/* Photo Bride Card */}
           <div className="w-full aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 shadow-xl">
             <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+              src="/assets/galeri/mempelai2.jpeg"  
               alt="The Bride" 
               className="w-full h-full object-cover" 
             />

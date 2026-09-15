@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const photos = [
-  "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
+  "/assets/galeri/mempelai1.jpeg",
+  "/assets/galeri/mempelai2.jpeg",
+  "/assets/galeri/galeri1.jpeg",
+  "/assets/galeri/galeri2.jpeg",
+  "/assets/galeri/galeri4.jpeg",
+  "/assets/galeri/galeri7.jpeg",
+  "/assets/galeri/galeri9.jpeg",
+  "/assets/galeri/galeri5.jpeg",
+  "/assets/galeri/galeri6.jpeg",
+  "/assets/galeri/galeri8.jpeg",
+  "/assets/galeri/galeri3.jpeg",
+  "/assets/galeri/galeri10.jpeg",
 ];
 
 const Doa = () => {

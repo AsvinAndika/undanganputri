@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
@@ -68,7 +68,7 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
           {/* Foto Kiri */}
           <div className="w-[42%] aspect-[3/4] overflow-hidden rounded-xl flex-shrink-0 border border-white/10">
             <img 
-              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" 
+              src="/assets/galeri/galeri10.jpeg" 
               alt="Pawiwahan" 
               className="w-full h-full object-cover" 
             />
@@ -113,7 +113,7 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
           {/* Foto Kiri */}
           <div className="w-[42%] aspect-[3/4] overflow-hidden rounded-xl flex-shrink-0 border border-white/10">
             <img 
-              src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" 
+              src="/assets/galeri/galeri6.jpeg" 
               alt="Resepsi" 
               className="w-full h-full object-cover" 
             />

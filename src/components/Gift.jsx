@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-// Ganti path logo di bawah sesuai dengan lokasi aset gambar kamu (misal: /assets/mandiri.png)
 const bankAccounts = [
   {
     bankName: 'Mandiri',
@@ -18,17 +17,7 @@ const bankAccounts = [
 
 const Gift = () => {
   const [showAccount, setShowAccount] = useState(false);
-  const [copiedIndex, setCopiedIndex] = useState(null);
-  const [guestName, setGuestName] = useState('Tamu Undangan');
-
-  // Membaca nama tamu dari URL
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const nameFromUrl = params.get('to') || params.get('tamu') || params.get('dear');
-    if (nameFromUrl) {
-      setGuestName(nameFromUrl);
-    }
-  }, []);
+  const [copiedIndex, setCopiedIndex] = useState(null);;
 
   // Fungsi Salin Rekening
   const handleCopy = (number, index) => {
@@ -54,7 +43,7 @@ const Gift = () => {
 
         {/* Deskripsi */}
         <p className="text-xs md:text-sm text-gray-200 font-serif leading-relaxed px-2 font-light tracking-wide">
-          Kehadiran Bapak/Ibu/Saudara/i <strong className="font-bold text-white capitalize">{guestName}</strong> merupakan sebuah do'a serta rasa syukur bagi kami, namun jika memberi adalah bentuk Do'a &amp; cinta kasih bagi Anda, Anda dapat memberi kado secara cashless dan kami akan senang hati menerimanya dan tentu semakin melengkapi kebahagiaan kami.
+          Kehadiran Bapak/Ibu/Saudara/i merupakan sebuah do'a serta rasa syukur bagi kami, namun jika memberi adalah bentuk Do'a &amp; cinta kasih bagi Anda, Anda dapat memberi kado secara cashless dan kami akan senang hati menerimanya dan tentu semakin melengkapi kebahagiaan kami.
         </p>
 
         {/* Tombol Toggle Lihat / Sembunyikan Rekening */}
