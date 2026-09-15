@@ -86,7 +86,7 @@ const Hero = ({ onRollClick }) => {
   return (
     <section className="relative h-[100dvh] w-full flex flex-col justify-end items-center text-white text-center pb-8 sm:pb-12 px-6 overflow-hidden bg-transparent">
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none"></div>
 
       {/* Content Container */}
       <div className="relative z-10 flex flex-col items-center max-w-md w-full space-y-2 sm:space-y-3 mb-2">

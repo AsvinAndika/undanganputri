@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import Hero from './Hero';
 import Doa from './Doa';
 import CoupleDetails from './CoupleDetails';
@@ -21,8 +21,12 @@ const globalBgImages = [
 
 const MUSIC_URL = 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-romantic-acoustic-guitar-113578.mp3';
 
-// Wrapper Animasi Scroll Reveal
-const AnimatedSection = ({ children, animation = 'fade-up', delay = 0, duration = 1600 }) => {
+/**
+ * Optimasi 1: AnimatedSection Ringan
+ * - Menghapus efek `blur-*` (Gaussian Blur) pada animasi scroll karena memicu GPU lag di HP.
+ * - Menghapus `will-change-transform` berlebih untuk menghemat memori GPU RAM.
+ */
+const AnimatedSection = memo(({ children, animation = 'fade-up', delay = 0, duration = 1000 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef(null);
 
@@ -36,7 +40,7 @@ const AnimatedSection = ({ children, animation = 'fade-up', delay = 0, duration 
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
 
     const { current } = domRef;
@@ -49,21 +53,20 @@ const AnimatedSection = ({ children, animation = 'fade-up', delay = 0, duration 
 
   const getInitialStyle = () => {
     switch (animation) {
-      case 'blur-in':
-        return 'opacity-0 blur-lg scale-95 translate-y-6';
       case 'zoom-in':
-        return 'opacity-0 scale-90 blur-md';
+        return 'opacity-0 scale-95';
       case 'fade-left':
-        return 'opacity-0 translate-x-16 blur-sm';
+        return 'opacity-0 translate-x-8';
       case 'fade-right':
-        return 'opacity-0 -translate-x-16 blur-sm';
+        return 'opacity-0 -translate-x-8';
+      case 'blur-in':
       case 'fade-up':
       default:
-        return 'opacity-0 translate-y-16 scale-[0.97] blur-sm';
+        return 'opacity-0 translate-y-8';
     }
   };
 
-  const getVisibleStyle = () => 'opacity-100 translate-y-0 translate-x-0 scale-100 blur-0';
+  const getVisibleStyle = () => 'opacity-100 translate-y-0 translate-x-0 scale-100';
 
   return (
     <div
@@ -71,32 +74,43 @@ const AnimatedSection = ({ children, animation = 'fade-up', delay = 0, duration 
       style={{
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
-        transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
       }}
-      className={`transition-all transform will-change-transform ${
-        isVisible ? getVisibleStyle() : getInitialStyle()
-      }`}
+      className={`transition-all ${isVisible ? getVisibleStyle() : getInitialStyle()}`}
     >
       {children}
     </div>
   );
-};
+});
 
 const Invitation = () => {
-  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [bgIndices, setBgIndices] = useState({ current: 0, next: 1, activeLayer: 0 });
   const [isPlaying, setIsPlaying] = useState(false);
   const [showMusicBtn, setShowMusicBtn] = useState(() => {
+    if (typeof window === 'undefined') return false;
     const hasRolled = sessionStorage.getItem('isRolled') === 'true';
-    const scrolledFar = typeof window !== 'undefined' && window.scrollY > 50;
+    const scrolledFar = window.scrollY > 50;
     return hasRolled || scrolledFar;
   });
+
   const audioRef = useRef(null);
 
-  // Background Slideshow
+  /**
+   * Optimasi 2: Double-Buffer Background Slideshow
+   * Dibandingkan membuat 8 elemen `<div>` di DOM secara bersamaan,
+   * teknik ini hanya merender 2 elemen `<div>` aktif untuk menghemat memori & rendering GPU.
+   */
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentBgIndex((prevIndex) => (prevIndex + 1) % globalBgImages.length);
-    }, 5000);
+      setBgIndices((prev) => {
+        const nextIndex = (prev.next + 1) % globalBgImages.length;
+        return {
+          current: prev.next,
+          next: nextIndex,
+          activeLayer: prev.activeLayer === 0 ? 1 : 0,
+        };
+      });
+    }, 6000);
 
     return () => clearInterval(timer);
   }, []);
@@ -128,20 +142,30 @@ const Invitation = () => {
 
   return (
     <div className="bg-black text-white font-sans max-w-md mx-auto shadow-2xl relative min-h-screen overflow-hidden">
-      {/* Audio Element */}
-      <audio ref={audioRef} src={MUSIC_URL} loop preload="auto" />
+      {/* Audio Element (Optimasi 3: preload="none" agar hemat kuota/load awal) */}
+      <audio ref={audioRef} src={MUSIC_URL} loop preload="none" />
 
-      {/* Global Background Slideshow */}
+      {/* Optimized Dual-Layer Background Slideshow */}
       <div className="fixed inset-0 max-w-md mx-auto pointer-events-none z-0 overflow-hidden">
-        {globalBgImages.map((imgUrl, index) => (
-          <div
-            key={imgUrl}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[1500ms] ease-in-out ${
-              index === currentBgIndex ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-            } transform transition-transform duration-[7000ms] ease-out`}
-            style={{ backgroundImage: `url('${imgUrl}')` }}
-          />
-        ))}
+        {/* Layer A */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+            bgIndices.activeLayer === 0 ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            backgroundImage: `url('${globalBgImages[bgIndices.activeLayer === 0 ? bgIndices.current : bgIndices.next]}')`,
+          }}
+        />
+
+        {/* Layer B */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+            bgIndices.activeLayer === 1 ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            backgroundImage: `url('${globalBgImages[bgIndices.activeLayer === 1 ? bgIndices.current : bgIndices.next]}')`,
+          }}
+        />
 
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/65 backdrop-brightness-90"></div>
@@ -152,39 +176,39 @@ const Invitation = () => {
         <Hero onRollClick={handleRollClick} />
 
         <main className="space-y-6">
-          <AnimatedSection animation="blur-in" duration={1800}>
+          <AnimatedSection animation="fade-up" duration={1000}>
             <Doa />
           </AnimatedSection>
 
-          <AnimatedSection animation="zoom-in" duration={1600}>
+          <AnimatedSection animation="zoom-in" duration={1000}>
             <CoupleDetails />
           </AnimatedSection>
 
-          <AnimatedSection animation="fade-up" duration={1600}>
+          <AnimatedSection animation="fade-up" duration={1000}>
             <EventDetails targetDate="2026-09-28T09:00:00" />
           </AnimatedSection>
 
-          <AnimatedSection animation="zoom-in" duration={1600}>
+          <AnimatedSection animation="zoom-in" duration={1000}>
             <Gift />
           </AnimatedSection>
 
-          <AnimatedSection animation="fade-left" duration={1600}>
+          <AnimatedSection animation="fade-left" duration={1000}>
             <Gallery />
           </AnimatedSection>
 
-          {/* <AnimatedSection animation="fade-right" duration={1600}>
+          {/* <AnimatedSection animation="fade-right" duration={1000}>
             <Wishes />
           </AnimatedSection> */}
         </main>
 
-        <AnimatedSection animation="blur-in" duration={1800}>
+        <AnimatedSection animation="fade-up" duration={1000}>
           <Footer />
         </AnimatedSection>
       </div>
 
       {/* Floating Music Button */}
       <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-700 ease-out ${
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ease-out ${
           showMusicBtn
             ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
             : 'opacity-0 translate-y-8 scale-75 pointer-events-none'
@@ -193,7 +217,7 @@ const Invitation = () => {
         <button
           onClick={toggleMusic}
           aria-label="Toggle Music"
-          className="w-11 h-11 rounded-full bg-black/60 border border-white/30 text-white flex items-center justify-center backdrop-blur-md shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+          className="w-11 h-11 rounded-full bg-black/60 border border-white/30 text-white flex items-center justify-center backdrop-blur-md shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
         >
           {isPlaying ? (
             <svg
