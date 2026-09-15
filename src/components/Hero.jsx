@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // Fungsi Custom Smooth Scroll (Super Pelan & Smooth 1.8 Detik)
 const smoothScrollTo = (targetEl, duration = 1800) => {
@@ -30,17 +30,12 @@ const smoothScrollTo = (targetEl, duration = 1800) => {
 
 const Hero = ({ onRollClick }) => {
   const [isRolled, setIsRolled] = useState(false);
-  const [guestName, setGuestName] = useState('Tamu Undangan');
+  const [guestName] = useState(() => {
+    if (typeof window === 'undefined') return 'Tamu Undangan';
 
-  // 1. Ambil Nama Tamu dari Parameter URL (?to=Nama+Tamu atau ?tamu=Nama+Tamu)
-  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const nameFromUrl = params.get('to') || params.get('tamu') || params.get('dear');
-    
-    if (nameFromUrl) {
-      setGuestName(nameFromUrl);
-    }
-  }, []);
+    return params.get('to') || params.get('tamu') || params.get('dear') || 'Tamu Undangan';
+  });
 
   // 2. Kunci Scroll Total (Desktop & Perangkat Touch/Mobile)
   useEffect(() => {
@@ -89,40 +84,40 @@ const Hero = ({ onRollClick }) => {
   };
 
   return (
-    <section className="relative h-screen w-full flex flex-col justify-end items-center text-white text-center pb-12 px-6 overflow-hidden bg-transparent">
+    <section className="relative h-[100dvh] w-full flex flex-col justify-end items-center text-white text-center pb-8 sm:pb-12 px-6 overflow-hidden bg-transparent">
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col items-center max-w-md w-full space-y-3">
+      <div className="relative z-10 flex flex-col items-center max-w-md w-full space-y-2 sm:space-y-3 mb-2">
         {/* Subtitle */}
-        <p className="tracking-[0.35em] text-[11px] font-light uppercase text-gray-200">
+        <p className="tracking-[0.35em] text-[10px] sm:text-[11px] font-light uppercase text-gray-200">
           THE WEDDING OF
         </p>
 
         {/* Nama Mempelai */}
-        <h1 className="text-2xl md:text-3xl font-serif tracking-[0.15em] font-medium uppercase text-white drop-shadow-md">
+        <h1 className="text-2xl sm:text-3xl font-serif tracking-[0.15em] font-medium uppercase text-white drop-shadow-md">
           IWAN &bull; PUTRI
         </h1>
 
         {/* Tanggal */}
-        <p className="text-[11px] tracking-[0.25em] font-medium uppercase text-gray-200 pt-1">
+        <p className="text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase text-gray-200 pt-0.5 sm:pt-1">
           KAMIS, 28 SEPTEMBER 2026
         </p>
 
-        {/* Penerima Undangan (Dinamis sesuai Link URL) */}
-        <div className="pt-2 text-center space-y-0.5">
-          <p className="text-[10px] tracking-[0.2em] uppercase font-light text-gray-300">
+        {/* Penerima Undangan */}
+        <div className="pt-1 sm:pt-2 text-center space-y-0.5">
+          <p className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-light text-gray-300">
             DEAR,
           </p>
-          <p className="font-serif italic text-base md:text-lg text-gray-100 font-medium capitalize">
+          <p className="font-serif italic text-base sm:text-lg text-gray-100 font-medium capitalize">
             {guestName}
           </p>
         </div>
 
         {/* Button Let's Roll */}
         <div
-          className={`pt-3 transition-all duration-700 ease-out ${
+          className={`pt-2 sm:pt-3 transition-all duration-700 ease-out ${
             isRolled
               ? 'opacity-0 pointer-events-none translate-y-4 scale-95'
               : 'opacity-100 translate-y-0 scale-100'
@@ -130,11 +125,11 @@ const Hero = ({ onRollClick }) => {
         >
           <button
             onClick={handleScroll}
-            className="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-white/70 bg-black/40 text-[11px] tracking-[0.2em] font-medium text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md shadow-lg cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full border border-white/70 bg-black/50 text-[10px] sm:text-[11px] tracking-[0.2em] font-medium text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-md shadow-lg cursor-pointer active:scale-95"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4"
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
