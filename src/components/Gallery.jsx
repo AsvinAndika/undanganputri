@@ -84,7 +84,7 @@ const Gallery = () => {
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition duration-300 flex items-center justify-center">
             <p className="text-[10px] tracking-[0.3em] font-serif uppercase text-white/80 drop-shadow-sm">
-              IWAN &bull; PUTRI
+              IWAN &bull; NIA
             </p>
           </div>
         </div>

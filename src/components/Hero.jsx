@@ -97,7 +97,7 @@ const Hero = ({ onRollClick }) => {
 
         {/* Nama Mempelai */}
         <h1 className="text-2xl sm:text-3xl font-serif tracking-[0.15em] font-medium uppercase text-white drop-shadow-md">
-          IWAN &bull; PUTRI
+          IWAN &bull; NIA
         </h1>
 
         {/* Tanggal */}
