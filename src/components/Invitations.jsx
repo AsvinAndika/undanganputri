@@ -10,11 +10,11 @@ import Footer from './Footer';
 
 const globalBgImages = [
   "/assets/galeri/galeri2.jpeg",
-  "/assets/galeri/galeri7.jpeg",
+  "/assets/galeri/galeri1.jpeg",
   "/assets/galeri/galeri9.jpeg",
   "/assets/galeri/galeri5.jpeg",
   "/assets/galeri/galeri6.jpeg",
-  "/assets/galeri/galeri8.jpeg",
+  "/assets/galeri/galeri4.jpeg",
   "/assets/galeri/galeri3.jpeg",
   "/assets/galeri/galeri10.jpeg",
 ];

@@ -128,7 +128,7 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
               Kamis, 28 September 2026
             </p>
             <p className="text-[11px] text-gray-300 font-light">
-                16.00 WITA
+                16.00 WITA - Selesai
             </p>
             <p className="text-[10px] text-gray-400 font-light leading-tight">
               Dari Kediaman Mempelai Pria Menuju Kediaman Mempelai Wanita

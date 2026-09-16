@@ -25,7 +25,7 @@ const CoupleDetails = () => {
               Lalu Iwan Zulkipli
             </h2>
             <p className="text-xs text-gray-300 font-serif italic font-light tracking-wide">
-              Putra dari Bapak Lalu zainudin muin<br />& Alm. Ibu sabakyah
+              Putra dari Bapak Lalu Zainudin Muin<br />& Alm. Ibu Sabakyah
             </p>
           </div>
 
@@ -70,7 +70,7 @@ const CoupleDetails = () => {
               Nia Ramadani Putri
             </h2>
             <p className="text-xs text-gray-300 font-serif italic font-light tracking-wide">
-              Putri dari Bapak Ashadi cahyadi<br />& Ibu Baiq zahrah
+              Putri dari Bapak Ashadi Cahyadi<br />& Ibu Baiq Zohrah
             </p>
           </div>
 
