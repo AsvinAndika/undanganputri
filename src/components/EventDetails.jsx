@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const EventDetails = ({ targetDate = '2026-10-04T08:00:00' }) => {
+const EventDetails = ({ targetDate = '2026-10-04T10:00:00' }) => {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
 
   useEffect(() => {

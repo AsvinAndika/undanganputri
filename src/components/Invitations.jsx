@@ -180,7 +180,7 @@ const Invitation = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" duration={1000}>
-            <EventDetails targetDate="2026-09-28T09:00:00" />
+            <EventDetails targetDate="2026-10-04T10:00:00" />
           </AnimatedSection>
 
           <AnimatedSection animation="zoom-in" duration={1000}>
