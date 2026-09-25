@@ -102,7 +102,7 @@ const Hero = ({ onRollClick }) => {
 
         {/* Tanggal */}
         <p className="text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase text-gray-200 pt-0.5 sm:pt-1">
-          KAMIS, 28 SEPTEMBER 2026
+          MINGGU, 4 OKTOBER 2026
         </p>
 
         {/* Penerima Undangan */}
