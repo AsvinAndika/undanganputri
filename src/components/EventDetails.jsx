@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
+const EventDetails = ({ targetDate = '2026-10-04T08:00:00' }) => {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
 
   useEffect(() => {
@@ -80,21 +80,21 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
               Akad Nikah
             </h3>
             <p className="text-xs text-gray-200 font-serif italic">
-              Kamis, 28 September 2026
+              Minggu, 4 Oktober 2026
             </p>
             <p className="text-[11px] text-gray-300 font-light">
-              09.30 WITA - Selesai
+              10.00 WITA - Selesai
             </p>
             <p className="text-[10px] text-gray-400 font-light leading-tight">
-              Mushola Kr.Bangket Kakol
+              Rumah Mempelai Pria
             </p>
             <p className="text-[10px] text-gray-400 font-light leading-tight line-clamp-2">
-              Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              Dusun Kakol Pemenang Tim., Kabupaten Lombok Utara, Nusa Tenggara Bar.
             </p>
 
             <div className="pt-2">
               <a 
-                href="https://maps.google.com" 
+                href="https://maps.app.goo.gl/xJvvRoisXopEgVhD7" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-black text-xs font-medium hover:bg-gray-200 transition shadow-md"
@@ -125,7 +125,7 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
               Nyongkolang
             </h3>
             <p className="text-xs text-gray-200 font-serif italic">
-              Kamis, 28 September 2026
+              Minggu, 4 Oktober 2026
             </p>
             <p className="text-[11px] text-gray-300 font-light">
                 16.00 WITA - Selesai
@@ -134,12 +134,12 @@ const EventDetails = ({ targetDate = '2026-09-28T08:00:00' }) => {
               Dari Kediaman Mempelai Pria Menuju Kediaman Mempelai Wanita
             </p>
             <p className="text-[10px] text-gray-400 font-light leading-tight line-clamp-2">
-              Jl. Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              Dusun Kakol Pemenang Tim., Kabupaten Lombok Utara, Nusa Tenggara Bar.
             </p>
 
             <div className="pt-2">
               <a 
-                href="https://maps.google.com" 
+                href="https://maps.app.goo.gl/xJvvRoisXopEgVhD7" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-black text-xs font-medium hover:bg-gray-200 transition shadow-md"
